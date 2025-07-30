@@ -40,6 +40,7 @@ export default function Home() {
               alt="Hero"
               data-ai-hint="career professional handshake"
               className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
+              priority
             />
           </div>
         </div>
