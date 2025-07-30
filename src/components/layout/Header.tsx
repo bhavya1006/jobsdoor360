@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { Briefcase, ChevronDown, LogOut, Menu, UserCircle, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -50,7 +50,9 @@ export default function Header() {
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <Link href="/" legacyBehavior passHref><NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>Home</NavigationMenuLink></Link>
+                <Link href="/" passHref>
+                  <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>Home</NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Career Option</NavigationMenuTrigger>
@@ -65,7 +67,9 @@ export default function Header() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/job-analysis" legacyBehavior passHref><NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>Job Analysis</NavigationMenuLink></Link>
+                 <Link href="/job-analysis" passHref>
+                  <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>Job Analysis</NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Blog</NavigationMenuTrigger>
@@ -78,10 +82,14 @@ export default function Header() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/assessments" legacyBehavior passHref><NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>Assessments</NavigationMenuLink></Link>
+                 <Link href="/assessments" passHref>
+                  <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>Assessments</NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/about" legacyBehavior passHref><NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>About Us</NavigationMenuLink></Link>
+                 <Link href="/about" passHref>
+                  <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>About Us</NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
