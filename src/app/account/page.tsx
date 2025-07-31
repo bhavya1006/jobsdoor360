@@ -31,8 +31,9 @@ export default function AccountPage() {
 
   return (
     <div className="bg-muted/40 min-h-[calc(100vh-8rem)] py-12">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <Card className="w-full max-w-4xl mx-auto shadow-lg">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl space-y-8">
+            {/* Main User Info Card */}
+            <Card className="shadow-lg">
                 <CardHeader className="flex flex-row items-center space-x-4 p-6">
                     <Avatar className="h-16 w-16">
                         <AvatarImage src="https://placehold.co/100x100.png" alt={user?.email} />
@@ -43,62 +44,61 @@ export default function AccountPage() {
                         <CardDescription>Welcome back, manage your profile and job search here.</CardDescription>
                     </div>
                 </CardHeader>
+            </Card>
 
-                <CardContent className="p-6 space-y-8">
-                    {/* Profile Completeness */}
-                    <div className="space-y-6">
-                        <h3 className="font-headline text-xl font-semibold">Profile Completeness</h3>
-                        <div className="space-y-4">
-                            <CompletenessItem icon={User} title="Personal Profile" value={25} onEdit={() => {}} />
-                            <CompletenessItem icon={Briefcase} title="Job Profile" value={0} onEdit={() => {}} />
-                            <CompletenessItem icon={ClipboardCheck} title="Assessment Completed" value={12} isAssessment={true} onEdit={() => {}} />
-                        </div>
-                    </div>
+            {/* Profile Completeness Card */}
+            <Card className="shadow-lg">
+                <CardHeader>
+                    <CardTitle className="font-headline text-xl">Profile Completeness</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                    <CompletenessItem icon={User} title="Personal Profile" value={25} onEdit={() => {}} />
+                    <CompletenessItem icon={Briefcase} title="Job Profile" value={0} onEdit={() => {}} />
+                    <CompletenessItem icon={ClipboardCheck} title="Assessment Completed" value={12} isAssessment={true} onEdit={() => {}} />
+                </CardContent>
+            </Card>
 
-                    {/* Actions */}
-                    <div className="space-y-6">
-                         <h3 className="font-headline text-xl font-semibold">Actions & Preferences</h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                           
-                            <ActionItem icon={FileText} title="Updating CV">
-                                <Button variant="outline" size="sm">View</Button>
-                                <Button variant="default" size="sm">Update</Button>
-                            </ActionItem>
-
-                            <ActionItem icon={Search} title="Explore Jobs">
-                                <Button asChild variant="default" size="sm">
-                                    <Link href="/career-options/job-options">Explore</Link>
-                                </Button>
-                            </ActionItem>
-
-                            <ActionItem icon={ExternalLink} title="Jobs Applied">
-                                 <Button asChild variant="outline" size="sm">
-                                    <Link href="#">Visit</Link>
-                                </Button>
-                            </ActionItem>
-                        </div>
-                    </div>
-                    
-                    {/* Preferences */}
+            {/* Actions & Preferences Card */}
+            <Card className="shadow-lg">
+                <CardHeader>
+                    <CardTitle className="font-headline text-xl">Actions & Preferences</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <ActionItem icon={FileText} title="Updating CV">
+                            <Button variant="outline" size="sm">View</Button>
+                            <Button variant="default" size="sm">Update</Button>
+                        </ActionItem>
+                        <ActionItem icon={Search} title="Explore Jobs">
+                            <Button asChild variant="default" size="sm">
+                                <Link href="/career-options/job-options">Explore</Link>
+                            </Button>
+                        </ActionItem>
+                        <ActionItem icon={ExternalLink} title="Jobs Applied">
+                            <Button asChild variant="outline" size="sm">
+                                <Link href="#">Visit</Link>
+                            </Button>
+                        </ActionItem>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
                         <PreferenceItem title="Looking for Internship" />
                         <PreferenceItem title="Looking for Job" />
                     </div>
                 </CardContent>
-
-                <CardFooter className="p-6 border-t">
-                     <Button onClick={logout} variant="destructive">
-                        Logout
-                    </Button>
-                </CardFooter>
             </Card>
+
+            {/* Logout Section */}
+            <div className="pt-4">
+                <Button onClick={logout} variant="destructive">
+                    Logout
+                </Button>
+            </div>
         </div>
     </div>
   );
 }
 
 // Helper components for better structure
-
 const CompletenessItem = ({ icon: Icon, title, value, onEdit, isAssessment = false }: { icon: React.ElementType, title: string, value: number, onEdit: () => void, isAssessment?: boolean }) => (
     <div className="space-y-2">
         <div className="flex items-center justify-between">
