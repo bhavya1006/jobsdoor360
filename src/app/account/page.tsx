@@ -52,9 +52,9 @@ export default function AccountPage() {
                     <CardTitle className="font-headline text-xl">Profile Completeness</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                    <CompletenessItem icon={User} title="Personal Profile" value={25} onEdit={() => {}} />
-                    <CompletenessItem icon={Briefcase} title="Job Profile" value={0} onEdit={() => {}} />
-                    <CompletenessItem icon={ClipboardCheck} title="Assessment Completed" value={12} isAssessment={true} onEdit={() => {}} />
+                    <CompletenessItem icon={User} title="Personal Profile" value={25} editHref="/account/personal-profile/edit" />
+                    <CompletenessItem icon={Briefcase} title="Job Profile" value={0} editHref="/account/job-profile/edit" />
+                    <CompletenessItem icon={ClipboardCheck} title="Assessment Completed" value={12} isAssessment={true} viewHref="/account/assessment-report" />
                 </CardContent>
             </Card>
 
@@ -66,8 +66,8 @@ export default function AccountPage() {
                 <CardContent className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <ActionItem icon={FileText} title="Updating CV">
-                            <Button variant="outline" size="sm">View</Button>
-                            <Button variant="default" size="sm">Update</Button>
+                            <Button asChild variant="outline" size="sm"><Link href="/account/cv/view">View</Link></Button>
+                            <Button asChild variant="default" size="sm"><Link href="/account/cv/update">Update</Link></Button>
                         </ActionItem>
                         <ActionItem icon={Search} title="Explore Jobs">
                             <Button asChild variant="default" size="sm">
@@ -76,7 +76,7 @@ export default function AccountPage() {
                         </ActionItem>
                         <ActionItem icon={ExternalLink} title="Jobs Applied">
                             <Button asChild variant="outline" size="sm">
-                                <Link href="#">Visit</Link>
+                                <Link href="/account/jobs-applied">Visit</Link>
                             </Button>
                         </ActionItem>
                     </div>
@@ -99,7 +99,7 @@ export default function AccountPage() {
 }
 
 // Helper components for better structure
-const CompletenessItem = ({ icon: Icon, title, value, onEdit, isAssessment = false }: { icon: React.ElementType, title: string, value: number, onEdit: () => void, isAssessment?: boolean }) => (
+const CompletenessItem = ({ icon: Icon, title, value, editHref, viewHref, isAssessment = false }: { icon: React.ElementType, title: string, value: number, editHref?: string, viewHref?: string, isAssessment?: boolean }) => (
     <div className="space-y-2">
         <div className="flex items-center justify-between">
             <div className="flex items-center">
@@ -107,14 +107,15 @@ const CompletenessItem = ({ icon: Icon, title, value, onEdit, isAssessment = fal
                 <span className="font-medium">{title}</span>
             </div>
              <div className="flex items-center space-x-4">
-                <span className="text-sm font-semibold text-primary">{value}%</span>
-                 <Button variant="ghost" size="icon" className="h-8 w-8" onClick={onEdit}>
-                    <Pencil className="h-4 w-4" />
-                </Button>
+                <span className="text-sm font-semibold text-primary">{isAssessment ? (viewHref ? <Link href={viewHref} className="underline">View Report</Link> : "0/0") : `${value}%`}</span>
+                 {editHref && 
+                    <Button asChild variant="ghost" size="icon" className="h-8 w-8">
+                        <Link href={editHref}><Pencil className="h-4 w-4" /></Link>
+                    </Button>
+                 }
             </div>
         </div>
-        <Progress value={value} aria-label={`${title} completeness`} />
-        {isAssessment && <p className="text-xs text-muted-foreground text-right">0/0</p>}
+        {!isAssessment && <Progress value={value} aria-label={`${title} completeness`} />}
     </div>
 );
 
