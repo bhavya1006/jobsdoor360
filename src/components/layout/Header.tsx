@@ -50,9 +50,9 @@ export default function Header() {
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <Link href="/" legacyBehavior passHref>
-                  <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
-                    <Link href="/">Home</Link>
+                <Link href="/" passHref>
+                  <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
+                    Home
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
@@ -69,9 +69,9 @@ export default function Header() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                 <Link href="/job-analysis" legacyBehavior passHref>
-                  <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
-                    <Link href="/job-analysis">Job Analysis</Link>
+                <Link href="/job-analysis" passHref>
+                  <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
+                    Job Analysis
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
@@ -86,16 +86,16 @@ export default function Header() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                 <Link href="/assessments" legacyBehavior passHref>
-                  <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
-                    <Link href="/assessments">Assessments</Link>
+                <Link href="/assessments" passHref>
+                  <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
+                    Assessments
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                 <Link href="/about" legacyBehavior passHref>
-                  <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
-                    <Link href="/about">About Us</Link>
+                <Link href="/about" passHref>
+                  <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
+                    About Us
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
