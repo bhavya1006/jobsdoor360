@@ -35,3 +35,39 @@ export function Jd360Loader({ className, ...props }: React.SVGProps<SVGSVGElemen
         </svg>
     );
 }
+
+
+export function Jd360FullLoader({ className, ...props }: React.SVGProps<SVGSVGElement>) {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 400 50"
+            className={cn("animate-pulse", className)}
+            {...props}
+        >
+            <style>
+                {`
+                @keyframes dash-full {
+                    from {
+                        stroke-dashoffset: 2000;
+                    }
+                    to {
+                        stroke-dashoffset: 0;
+                    }
+                }
+                .jd360-full-text {
+                    font-family: var(--font-headline), sans-serif;
+                    font-size: 48px;
+                    font-weight: bold;
+                    fill: none;
+                    stroke: currentColor;
+                    stroke-width: 1;
+                    stroke-dasharray: 2000;
+                    animation: dash-full 4s linear infinite;
+                }
+                `}
+            </style>
+            <text x="0" y="40" className="jd360-full-text">Jobsdoor360</text>
+        </svg>
+    );
+}
