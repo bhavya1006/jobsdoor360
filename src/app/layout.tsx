@@ -6,6 +6,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { cn } from '@/lib/utils';
 import { PT_Sans, Space_Grotesk } from 'next/font/google';
+import ShortcutMenu from '@/components/layout/ShortcutMenu';
 
 const ptSans = PT_Sans({
   subsets: ['latin'],
@@ -35,6 +36,7 @@ export default function RootLayout({
           <div className="relative flex min-h-screen flex-col">
             <Header />
             <main className="flex-1">{children}</main>
+            <ShortcutMenu />
             <Footer />
           </div>
           <Toaster />
