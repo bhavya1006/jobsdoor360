@@ -1,0 +1,158 @@
+{
+  "backendStructure": {
+    "technology": {
+      "primaryService": "Firebase",
+      "components": [
+        {
+          "name": "Firebase Authentication",
+          "purpose": "User authentication, registration, and login"
+        },
+        {
+          "name": "Firestore",
+          "purpose": "NoSQL database for storing application data"
+        },
+        {
+          "name": "Firebase Storage",
+          "purpose": "File storage for documents like CVs"
+        }
+      ],
+      "buildTools": [
+        {
+          "name": "Node.js",
+          "purpose": "Build environment and EJS template compilation"
+        },
+        {
+          "name": "EJS",
+          "purpose": "Template engine for generating HTML pages"
+        }
+      ]
+    },
+    "databaseSchema": {
+      "collections": [
+        {
+          "name": "user_profile",
+          "documentId": "User's email",
+          "fields": {
+            "about": {
+              "email": "String",
+              "firstName": "String"
+            },
+            "audit_fields": {
+              "createdAt": "Timestamp",
+              "createdBy": "String (email)",
+              "updatedAt": "Timestamp",
+              "updatedBy": "String (email)"
+            }
+          }
+        },
+        {
+          "name": "lead",
+          "documentId": "User's email",
+          "fields": {
+            "full_name": "String",
+            "phonenumber": "String",
+            "email": "String"
+          }
+        }
+      ]
+    },
+    "authenticationFlows": {
+      "registration": [
+        "Validate user input",
+        "Check if user already exists in Firestore",
+        "Create user with Firebase Authentication",
+        "Update user profile with username",
+        "Send email verification",
+        "Save user data to 'lead' collection in Firestore",
+        "Redirect to email verification page"
+      ],
+      "login": [
+        "Authenticate with Firebase Authentication",
+        "Verify email verification status",
+        "Store user information in localStorage",
+        "Check for user profile in Firestore",
+        "Create profile if doesn't exist",
+        "Redirect to appropriate page"
+      ],
+      "passwordReset": [
+        "Send password reset email using Firebase Authentication"
+      ]
+    },
+    "dataOperations": {
+      "userOperations": [
+        {
+          "operation": "Create/Update User Profile",
+          "code": "const leadDocRef = doc(db, 'lead', email); await setDoc(leadDocRef, { full_name: username, phonenumber, email });"
+        },
+        {
+          "operation": "Check User Existence",
+          "code": "const docRef = doc(db, 'lead', email); const docSnap = await getDoc(docRef); return docSnap.exists();"
+        }
+      ],
+      "assessmentOperations": [
+        {
+          "operation": "Store Test Results",
+          "code": "const existingDoc = await getDoc(userResultsRef); if (existingDoc.exists()) { await setDoc(userResultsRef, { results: [...existingResults, newAttempt] }); } else { await setDoc(userResultsRef, { results: [newAttempt] }); }"
+        }
+      ]
+    },
+    "dataModels": {
+      "jobData": {
+        "post_date": "String (DD_MM_YYYY)",
+        "post_code": "String",
+        "job_code": "String",
+        "recruitment_board": "String",
+        "qualification_eligibility": "String",
+        "last_date": "String",
+        "brief_info": "String",
+        "minimum_age": "Number",
+        "maximum_age": "Number",
+        "job_link": "String (URL)",
+        "job_type": "String",
+        "posts_data": {
+          "post_id": "Number",
+          "post_code": "String",
+          "post_name": "String",
+          "jobtype_masterdata": "Object",
+          "profile_masterdata": "Object"
+        }
+      },
+      "userProfile": {
+        "about": {
+          "email": "String",
+          "firstName": "String"
+        },
+        "audit_fields": {
+          "createdAt": "Timestamp",
+          "createdBy": "String",
+          "updatedAt": "Timestamp",
+          "updatedBy": "String"
+        }
+      }
+    },
+    "environment": {
+      "firebaseConfig": {
+        "apiKey": "AIzaSyDzoJJ_325VL_axuuAFzDf3Bwt_ENzu2rM",
+        "authDomain": "jobsdoor360-39b87.firebaseapp.com",
+        "databaseURL": "https://jobsdoor360-39b87-default-rtdb.firebaseio.com",
+        "projectId": "jobsdoor360-39b87",
+        "storageBucket": "jobsdoor360-39b87.appspot.com",
+        "messagingSenderId": "326416618185",
+        "appId": "1:326416618185:web:de19e90fe4f06006ef3318",
+        "measurementId": "G-60RHEMJNM6"
+      },
+      "dependencies": {
+        "chokidar": "^4.0.3",
+        "ejs": "^3.1.10",
+        "express": "^4.19.2",
+        "firebase": "^10.12.3",
+        "mongoose": "^8.2.3"
+      }
+    },
+    "utilityFunctions": {
+      "errorHandling": {
+        "parseFirebaseError": "Function to format Firebase error messages for display"
+      }
+    }
+  }
+}
