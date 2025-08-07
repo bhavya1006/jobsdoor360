@@ -56,3 +56,30 @@ npm run dev
 ```
 
 The app uses Turbopack for faster development builds. You can now view the application in your browser.
+
+### Static Export
+
+This project is configured to generate a static export that can be deployed to any static hosting provider.
+
+1. Generate the static build
+   ```sh
+   npm run export
+   ```
+
+2. Preview the static build locally
+   ```sh
+   npm run serve:static
+   ```
+
+3. Deploy the static files
+   The static files will be in the `out` directory. You can deploy these files to any static hosting provider such as:
+   - Vercel
+   - Netlify
+   - Firebase Hosting
+   - GitHub Pages
+   - AWS S3
+
+#### Notes for Static Export
+- All API routes have been removed as they're not compatible with static exports
+- The application uses client-side Firebase for authentication and data fetching
+- For local testing, Firebase emulators can be started with `firebase emulators:start`
